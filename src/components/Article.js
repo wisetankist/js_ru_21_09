@@ -1,6 +1,19 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 class Article extends Component {
+    static defaultProps = {
+
+    }
+
+    static propTypes = {
+        article: PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            text: PropTypes.string,
+            date: PropTypes.string.isRequired
+        }).isRequired
+    }
+
     state = {
         isOpen: true
     }
