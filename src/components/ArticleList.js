@@ -6,6 +6,11 @@ class ArticleList extends Component {
     state = {
         openArticleId: null
     }
+    toggleArticle = (openArticleId) => (ev) => {
+        this.setState({
+            openArticleId: openArticleId !== this.state.openArticleId ? openArticleId : null
+        })
+    }
 
     render() {
         const {articles} = this.props
@@ -21,10 +26,6 @@ class ArticleList extends Component {
                 {articleElements}
             </ul>
         )
-    }
-
-    toggleArticle = (openArticleId) => (ev) => {
-        this.setState({openArticleId})
     }
 }
 
