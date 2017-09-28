@@ -21,25 +21,6 @@ class Article extends PureComponent {
         clicked: 0
     }
 
-    componentWillMount() {
-        console.log('---', 'mounting')
-    }
-
-    componentDidMount() {
-        console.log('---', 'mounted')
-    }
-
-    componentWillUpdate(nextProps) {
-        console.log('---', this.props, nextProps)
-    }
-/*
-
-    shouldComponentUpdate(nextProps) {
-        return Object.entries(nextProps).every(([key, value]) => this.props[key] === value)
-        return this.props.isOpen !== nextProps.isOpen
-    }
-*/
-
     render() {
         const {article, isOpen, onButtonClick} = this.props
         const body = isOpen && (
@@ -50,7 +31,7 @@ class Article extends PureComponent {
         )
         return (
             <div>
-                <h2>
+                <h2 ref = {this.setHeaderRef}>
                     {article.title}
                     <button onClick={onButtonClick}>
                         {isOpen ? 'close' : 'open'}
@@ -61,6 +42,11 @@ class Article extends PureComponent {
                 <h3>creation date: {(new Date(article.date)).toDateString()}</h3>
             </div>
         )
+    }
+
+    setHeaderRef = header => {
+        this.header = header
+        console.log('---', this.header)
     }
 
     increment = () => this.setState({
