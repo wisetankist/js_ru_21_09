@@ -17,6 +17,18 @@ class Article extends Component {
         onClick: PropTypes.func
     }
 
+    componentWillMount() {
+        console.log('---', 'mounting')
+    }
+
+    componentDidMount() {
+        console.log('---', 'mounted')
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('---', this.props, nextProps)
+    }
+
     render() {
         const {article, isOpen, onButtonClick} = this.props
         const body = isOpen && (

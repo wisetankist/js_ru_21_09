@@ -15,6 +15,14 @@ class CommentList extends Component {
         isOpen: false
     }
 
+    componentWillMount() {
+        console.log('---', 'mounting comment list')
+    }
+
+    componentWillUnmount() {
+        console.log('---', 'unmounting comment list')
+    }
+
     render() {
         const {comments} = this.props
         const text = this.state.isOpen ? 'hide comments' : 'show comments'
