@@ -23,11 +23,19 @@ class ArticleList extends Component {
         )
     }
 
-    toggleArticle = (openArticleId) => (ev) => {
-        this.setState({
-            openArticleId: this.state.openArticleId !== openArticleId ? openArticleId : null
-        })
-    }
+    toggleArticle = (openArticleId) => {
+        if (this.map.get(openArticleId)) return this.map.get(openArticleId)
+        const func = (en) => {
+            this.setState({
+                openArticleId: this.state.openArticleId !== openArticleId ? openArticleId : null
+            })
+        };
+
+        this.map.set(openArticleId, func)
+        return func;
+    };
+
+    map = new Map();
 }
 
 

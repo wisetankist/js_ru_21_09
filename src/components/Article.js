@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component, PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import CommentsList from './CommentsList'
 
-class Article extends Component {
+class Article extends PureComponent {
     static defaultProps = {
 
     }
