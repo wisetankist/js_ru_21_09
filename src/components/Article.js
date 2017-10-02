@@ -24,6 +24,9 @@ class Article extends PureComponent {
 
     render() {
         const {article, isOpen, onButtonClick} = this.props
+
+        if (this.state.clicked > 3) throw new Error('clicked more then 3 times')
+
         const body = isOpen && (
             <div>
                 <section>{article.text}</section>
