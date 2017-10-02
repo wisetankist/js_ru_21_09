@@ -1,7 +1,9 @@
 import React, {Component, PureComponent} from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import PropTypes from 'prop-types'
-import CommentList from './CommentList'
+import CommentList from '../CommentList'
 import {findDOMNode} from 'react-dom'
+import './style.css'
 
 class Article extends PureComponent {
     static defaultProps = {
@@ -27,12 +29,6 @@ class Article extends PureComponent {
 
         if (this.state.clicked > 3) throw new Error('clicked more then 3 times')
 
-        const body = isOpen && (
-            <div>
-                <section>{article.text}</section>
-                <CommentList comments = {article.comments} ref = {this.setCommentsRef} key = {this.state.clicked}/>
-            </div>
-        )
         return (
             <div>
                 <h2 ref = {this.setHeaderRef}>
@@ -42,8 +38,28 @@ class Article extends PureComponent {
                     </button>
                     <span onClick = {this.increment}>Clicked: {this.state.clicked} times</span>
                 </h2>
-                {body}
+                <ReactCSSTransitionGroup
+                    transitionName = 'article'
+                    transitionEnterTimeout = {500}
+                    transitionLeaveTimeout = {300}
+                    component = 'div'
+                >
+                    {this.getBody()}
+                </ReactCSSTransitionGroup>
                 <h3>creation date: {(new Date(article.date)).toDateString()}</h3>
+            </div>
+        )
+    }
+
+    getBody() {
+        const {isOpen, article} = this.props
+
+        if (!isOpen) return null
+
+        return (
+            <div>
+                <section>{article.text}</section>
+                <CommentList comments = {article.comments} ref = {this.setCommentsRef} key = {this.state.clicked}/>
             </div>
         )
     }
