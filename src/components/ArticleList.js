@@ -1,19 +1,16 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Article from './Article'
+import Accordion from './Accordion'
 
-class ArticleList extends Component {
-    state = {
-        openArticleId: null
-    }
-
+class ArticleList extends Accordion {
     render() {
         const {articles} = this.props
         if (!articles.length) return <h3>No Articles</h3>
         const articleElements = articles.map((article) => <li key={article.id}>
             <Article article={article}
-                     isOpen={article.id === this.state.openArticleId}
-                     onButtonClick={this.toggleArticle(article.id)}
+                     isOpen={article.id === this.state.openItemId}
+                     onButtonClick={this.toggleOpenItemMemoized(article.id)}
             />
         </li>)
         return (
@@ -22,21 +19,6 @@ class ArticleList extends Component {
             </ul>
         )
     }
-
-    toggleArticle = (openArticleId) => {
-        if (this.memoized.get(openArticleId)) return this.memoized.get(openArticleId)
-        const func = (ev) => {
-            this.setState({
-                openArticleId: this.state.openArticleId === openArticleId ? null : openArticleId
-            })
-        }
-
-        this.memoized.set(openArticleId, func)
-
-        return func
-    }
-
-    memoized = new Map()
 }
 
 
