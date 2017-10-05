@@ -10,7 +10,6 @@ class App extends Component {
     }
 
     render() {
-        const {articles} = this.props
         const {username} = this.state
 
         return (
@@ -18,9 +17,8 @@ class App extends Component {
                 <h1>App name</h1>
                 <Counter />
                 User: <input type = 'text' value = {username} onChange = {this.handleUserChange}/>
-                <Filters articles = {articles}/>
-                <ArticleList articles = {articles}/>
-                <ArticlesChart articles ={ articles}/>
+                <Filters articles = {[]}/>
+                <ArticleList />
             </div>
         )
     }
