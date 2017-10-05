@@ -2,26 +2,21 @@ import React, {Component} from 'react'
 import ArticleList from './ArticleList'
 import ArticlesChart from './ArticlesChart'
 import Filters from './Filters'
+import Counter from './Counter'
 
 class App extends Component {
     state = {
-        selected: null,
         username: ''
     }
 
     render() {
         const {articles} = this.props
-
-        const options = articles.map(article => ({
-            label: article.title,
-            value: article.id
-        }))
-
         const {username} = this.state
 
         return (
             <div>
                 <h1>App name</h1>
+                <Counter />
                 User: <input type = 'text' value = {username} onChange = {this.handleUserChange}/>
                 <Filters articles = {articles}/>
                 <ArticleList articles = {articles}/>
