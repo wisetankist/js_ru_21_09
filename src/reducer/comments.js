@@ -1,7 +1,11 @@
 import {  } from '../constants'
 import {normalizedComments} from '../fixtures'
 
-export default (commentsState = normalizedComments, action) => {
+const commentsMap = normalizedComments.reduce((acc, article) => {
+    return {...acc, [article.id]: article}
+}, {})
+
+export default (commentsState = commentsMap, action) => {
     const { type, payload, response, error } = action
 
     switch (type) {
