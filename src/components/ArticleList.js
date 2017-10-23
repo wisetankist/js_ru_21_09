@@ -18,7 +18,8 @@ class ArticleList extends Accordion {
     }
 
     componentDidMount() {
-        this.props.loadAllArticles()
+        const {loaded, loading, loadAllArticles } = this.props
+        if (!loading && !loaded) loadAllArticles()
     }
 
     render() {
@@ -60,6 +61,7 @@ export default connect(state => {
     console.log('---', 'connect for ArticleList')
     return {
         articles: filtratedArticlesSelector(state),
-        loading: state.articles.loading
+        loading: state.articles.loading,
+        loaded: state.articles.loaded,
     }
 }, { loadAllArticles })(ArticleList)
