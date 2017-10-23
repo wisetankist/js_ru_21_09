@@ -13,13 +13,16 @@ class ArticlesPage extends Component {
         return (
             <div>
                 <ArticleList />
-                <Route path = '/articles/:id' render = {this.getArticleView}/>
+                <Route path = '/articles/:id' children = {this.getArticleView}/>
             </div>
         )
     }
 
     getArticleView = ({ match }) => {
+        if (!match) return <h2>Select some article</h2>
+
         console.log('---', 'Article Match', match)
+
         return <Article isOpen id = {match.params.id} />
     }
 }
