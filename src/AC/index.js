@@ -36,15 +36,25 @@ export function addComment(comment, articleId) {
     }
 }
 
-export function loadAllArticles() {
-    return {
-        type: LOAD_ALL_ARTICLES,
-        callAPI: '/api/article'
+export function checkAndLoadAllArticles() {
+    return (disaptch, getState) => {
+        const {articles} = getState()
+
+        if (articles.loading || articles.loaded) return
+
+        disaptch({
+            type: LOAD_ALL_ARTICLES,
+            callAPI: '/api/article'
+        })
     }
 }
 
 export function loadArticle(id) {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const article = getState().articles.getIn(['entities', id])
+
+        if (article && (article.text || article.loading)) return
+
         dispatch({
             type: LOAD_ARTICLE + START,
             payload: { id }
