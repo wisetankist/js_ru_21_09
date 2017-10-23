@@ -29,7 +29,8 @@ class Article extends PureComponent {
         clicked: 0
     }
 
-    componentWillReceiveProps({isOpen, id, loadArticle}) {
+    componentDidMount() {
+        const {isOpen, id, loadArticle} = this.props
         if (isOpen) loadArticle(id)
     }
 

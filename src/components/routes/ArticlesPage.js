@@ -23,7 +23,7 @@ class ArticlesPage extends Component {
 
         console.log('---', 'Article Match', match)
 
-        return <Article isOpen id = {match.params.id} />
+        return <Article isOpen id = {match.params.id} key = {match.params.id} />
     }
 }
 
