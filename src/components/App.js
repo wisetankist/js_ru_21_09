@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import ArticleList from './ArticleList'
-import ArticlesChart from './ArticlesChart'
+import {Route} from 'react-router-dom'
+import ArticlesPage from './routes/ArticlesPage'
 import Filters from './Filters'
 import Counter from './Counter'
 
@@ -15,10 +15,10 @@ class App extends Component {
         return (
             <div>
                 <h1>App name</h1>
-                <Counter />
                 User: <input type = 'text' value = {username} onChange = {this.handleUserChange}/>
-                <Filters />
-                <ArticleList />
+                <Route path = '/counter' component = {Counter} />
+                <Route path = '/filters' component = {Filters} />
+                <Route path = '/articles' component = {ArticlesPage} />
             </div>
         )
     }
