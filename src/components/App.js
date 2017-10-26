@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {Route, NavLink, Switch, Redirect} from 'react-router-dom'
 import ArticlesPage from './routes/ArticlesPage'
 import CommentsPage from './routes/CommentsPage'
@@ -11,8 +12,19 @@ class App extends Component {
         username: ''
     }
 
+    static childContextTypes = {
+        user: PropTypes.string
+    }
+
+    getChildContext() {
+        return {
+            user: this.state.username
+        }
+    }
+
     render() {
         const {username} = this.state
+        console.log('---', 1)
 
         return (
             <div>
