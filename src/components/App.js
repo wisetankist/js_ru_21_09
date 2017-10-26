@@ -30,10 +30,13 @@ class App extends Component {
                     <Route path = '/articles/new' render = {this.newArticlePage} />
                     <Route path = '/articles' component = {ArticlesPage} />
                     <Route path = '/comments' component = {CommentsPage}/>
+                    <Route path = '*' render = {this.notFound} />
                 </Switch>
             </div>
         )
     }
+
+    notFound = () => <h1>Not Found</h1>
 
     newArticlePage = () => <h1>New Article Page</h1>
 
