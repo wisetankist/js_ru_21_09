@@ -12,6 +12,7 @@ class ArticlesPage extends Component {
         console.log('---', 'Article Page Match', this.props.match)
         return (
             <div>
+                <h3>Article List</h3>
                 <ArticleList />
                 <Route path = '/articles/:id' children = {this.getArticleView}/>
             </div>
