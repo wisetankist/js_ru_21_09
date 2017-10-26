@@ -4,6 +4,7 @@ import ArticlesPage from './routes/ArticlesPage'
 import CommentsPage from './routes/CommentsPage'
 import Filters from './Filters'
 import Counter from './Counter'
+import Menu, {MenuItem} from './Menu'
 
 class App extends Component {
     state = {
@@ -16,12 +17,12 @@ class App extends Component {
         return (
             <div>
                 <h1>App name</h1>
-                <ul>
-                    <li><NavLink to = '/articles' activeStyle = {{color: 'red'}}>articles</NavLink></li>
-                    <li><NavLink to = '/filters' activeStyle = {{color: 'red'}}>filters</NavLink></li>
-                    <li><NavLink to = '/counter' activeStyle = {{color: 'red'}}>counter</NavLink></li>
-                    <li><NavLink to = '/comments/1' activeStyle = {{color: 'red'}}>comments</NavLink></li>
-                </ul>
+                <Menu>
+                    <MenuItem to = '/articles'>articles</MenuItem>
+                    <MenuItem to = '/filters'>filters</MenuItem>
+                    <MenuItem to = '/counter'>counter</MenuItem>
+                    <MenuItem to = '/comments/1'>comments</MenuItem>
+                </Menu>
                 User: <input type = 'text' value = {username} onChange = {this.handleUserChange}/>
                 <Switch>
                     <Redirect from = '/' exact to = '/articles'/>
