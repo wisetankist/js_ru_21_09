@@ -3,7 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import PropTypes from 'prop-types'
 import CommentList from '../CommentList'
 import Loader from '../Loader'
-import {findDOMNode} from 'react-dom'
+import LocalizedText from '../LocalizedText'
 import {connect} from 'react-redux'
 import {deleteArticle, loadArticle} from '../../AC'
 import './style.css'
@@ -46,7 +46,9 @@ class Article extends Component {
                 <h2 ref = {this.setHeaderRef}>
                     {article.title}
                     <span onClick = {this.increment}>Clicked: {this.state.clicked} times</span>
-                    <button onClick = {this.handleDelete}>delete me</button>
+                    <button onClick = {this.handleDelete}>
+                        <LocalizedText>delete me</LocalizedText>
+                    </button>
                 </h2>
                 <ReactCSSTransitionGroup
                     transitionName = 'article'
